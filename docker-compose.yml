@@ -1,0 +1,27 @@
+version: "1"
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "library#2021"
+      MSSQL_PID: Express
+    ports:
+      - 1433:1433
+
+  library-app:
+    build: .
+    ports:
+      - 5050:80
+
+  rabbitmq:
+    image: masstransit/rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
