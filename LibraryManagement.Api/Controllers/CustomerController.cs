@@ -19,9 +19,12 @@ namespace LibraryManagement.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Customer customer)
         {
-            await _services.CreateExchange(customer);
-
+            var result = await _services.CreateExchange(customer);
             // await _services.CreateQueue(customer);
+
+            if (result) {
+                return BadRequest("An error has occurred");
+            }
 
             return Ok();
         }

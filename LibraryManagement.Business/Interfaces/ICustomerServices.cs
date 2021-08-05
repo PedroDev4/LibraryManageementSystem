@@ -6,7 +6,7 @@ namespace LibraryManagement.Business.Interfaces
     public interface ICustomerServices
     {
         Task CreateQueue(Customer data);
-        Task CreateExchange(Customer data);
+        Task<bool> CreateExchange(Customer data);
 
     }
 }

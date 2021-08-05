@@ -85,18 +85,24 @@ namespace LibraryManagement.Infrastructure.Repository
         }
 
 
-        public async Task Insert(T entity)
+        public async Task<bool> Insert(T entity)
         {
+            bool isExpection = false;
             try
             {
                 _context.Set<T>().Add(entity);
 
                 await _context.SaveChangesAsync();
+                
+                
             }
             catch (Exception ex)
             {
                 _logger.LogError("Error: " + ex.Message);
+                isExpection = true;
             }
+            return isExpection;
+
         }
 
         public async Task Update(T entity)

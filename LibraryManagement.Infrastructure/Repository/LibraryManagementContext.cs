@@ -8,6 +8,8 @@ namespace LibraryManagement.Infrastructure.Repository
     {
         public DbSet<Address> Address { get; set; }
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Book> Book { get; set; }
+        public DbSet<Author> Author { get; set; }
 
         public LibraryManagementContext(DbContextOptions options) : base(options) { }
 

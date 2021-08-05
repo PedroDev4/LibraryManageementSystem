@@ -41,24 +41,28 @@ namespace LibraryManagement.Application
                 await _repo.Insert(data);
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) { 
+            
                 _logger.LogError(ex.Message);
             }
         }
 
-        public async Task CreateExchange(Customer data)
+        public async Task<bool> CreateExchange(Customer data)
         {
+            var result = false;
             try
             {
-                await _repo.Insert(data);
+                result = await _repo.Insert(data);
 
                 await _publisher.Publish<Customer>(data);
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
+                result = true;
             }
+            return result;
         }
     }
 }

@@ -7,7 +7,8 @@ namespace LibraryManagement.Business.Interfaces
 {
     public interface ILibraryManagementRepository<T> : IDisposable where T : Entity
     {
-        Task Insert(T entity);
+                
+        Task<bool> Insert(T entity);
         Task Delete(int id);
         Task Update(T entity);
         Task<T> GetById(int id);

@@ -14,6 +14,7 @@ namespace LibraryManagement.Infrastructure.Config
             builder.Property(c => c.Email).IsRequired().HasColumnType("varchar(40)").HasMaxLength(40);
             builder.Property(c => c.Phone).IsRequired().HasColumnType("varchar(16)").HasMaxLength(16);
             builder.HasOne(c => c.Address).WithMany().HasForeignKey(c => c.AddressId);
+
         }
     }
 }
